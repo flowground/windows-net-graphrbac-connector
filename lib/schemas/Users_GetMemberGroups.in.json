@@ -1,0 +1,33 @@
+{
+    "type": "object",
+    "properties": {
+        "objectId": {
+            "required": true,
+            "type": "string"
+        },
+        "tenantID": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "additionalProperties": {
+                "type": "object"
+            },
+            "description": "Request parameters for GetMemberGroups API call.",
+            "properties": {
+                "securityEnabledOnly": {
+                    "description": "If true, only membership in security-enabled groups should be checked. Otherwise, membership in all groups should be checked.",
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "securityEnabledOnly"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

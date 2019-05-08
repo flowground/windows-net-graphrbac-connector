@@ -1,0 +1,34 @@
+{
+    "type": "object",
+    "properties": {
+        "tenantID": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "additionalProperties": {
+                "type": "object"
+            },
+            "description": "Request parameters for IsMemberOf API call.",
+            "properties": {
+                "groupId": {
+                    "description": "The object ID of the group to check.",
+                    "type": "string"
+                },
+                "memberId": {
+                    "description": "The object ID of the contact, group, user, or service principal to check for membership in the specified group.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "groupId",
+                "memberId"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

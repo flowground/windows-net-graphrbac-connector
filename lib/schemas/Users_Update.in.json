@@ -1,0 +1,97 @@
+{
+    "type": "object",
+    "properties": {
+        "upnOrObjectId": {
+            "required": true,
+            "type": "string"
+        },
+        "tenantID": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "additionalProperties": {
+                        "type": "object"
+                    },
+                    "properties": {
+                        "givenName": {
+                            "description": "The given name for the user.",
+                            "type": "string"
+                        },
+                        "immutableId": {
+                            "description": "This must be specified if you are using a federated domain for the user's userPrincipalName (UPN) property when creating a new user account. It is used to associate an on-premises Active Directory user account with their Azure AD user object.",
+                            "type": "string"
+                        },
+                        "surname": {
+                            "description": "The user's surname (family name or last name).",
+                            "type": "string"
+                        },
+                        "usageLocation": {
+                            "description": "A two letter country code (ISO standard 3166). Required for users that will be assigned licenses due to legal requirement to check for availability of services in countries. Examples include: \"US\", \"JP\", and \"GB\".",
+                            "type": "string"
+                        },
+                        "userType": {
+                            "description": "A string value that can be used to classify user types in your directory, such as 'Member' and 'Guest'.",
+                            "enum": [
+                                "Member",
+                                "Guest"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "UserType"
+                            }
+                        }
+                    },
+                    "type": "object"
+                }
+            ],
+            "description": "Request parameters for updating an existing work or school account user.",
+            "properties": {
+                "accountEnabled": {
+                    "description": "Whether the account is enabled.",
+                    "type": "boolean"
+                },
+                "displayName": {
+                    "description": "The display name of the user.",
+                    "type": "string"
+                },
+                "mailNickname": {
+                    "description": "The mail alias for the user.",
+                    "type": "string"
+                },
+                "passwordProfile": {
+                    "description": "The password profile of the user.",
+                    "additionalProperties": {
+                        "type": "object"
+                    },
+                    "properties": {
+                        "forceChangePasswordNextLogin": {
+                            "description": "Whether to force a password change on next login.",
+                            "type": "boolean"
+                        },
+                        "password": {
+                            "description": "Password",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "password"
+                    ],
+                    "type": "object"
+                },
+                "userPrincipalName": {
+                    "description": "The user principal name (someuser@contoso.com). It must contain one of the verified domains for the tenant.",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

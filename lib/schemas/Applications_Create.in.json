@@ -1,0 +1,502 @@
+{
+    "type": "object",
+    "properties": {
+        "tenantID": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "Active Directive Application common properties shared among GET, POST and PATCH",
+                    "properties": {
+                        "allowGuestsSignIn": {
+                            "description": "A property on the application to indicate if the application accepts other IDPs or not or partially accepts.",
+                            "type": "boolean"
+                        },
+                        "allowPassthroughUsers": {
+                            "description": "Indicates that the application supports pass through users who have no presence in the resource tenant.",
+                            "type": "boolean"
+                        },
+                        "appLogoUrl": {
+                            "description": "The url for the application logo image stored in a CDN.",
+                            "type": "string"
+                        },
+                        "appPermissions": {
+                            "description": "The application permissions.",
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        "appRoles": {
+                            "description": "The collection of application roles that an application may declare. These roles can be assigned to users, groups or service principals.",
+                            "items": {
+                                "properties": {
+                                    "allowedMemberTypes": {
+                                        "description": "Specifies whether this app role definition can be assigned to users and groups by setting to 'User', or to other applications (that are accessing this application in daemon service scenarios) by setting to 'Application', or to both. ",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array"
+                                    },
+                                    "description": {
+                                        "description": "Permission help text that appears in the admin app assignment and consent experiences.",
+                                        "type": "string"
+                                    },
+                                    "displayName": {
+                                        "description": "Display name for the permission that appears in the admin consent and app assignment experiences.",
+                                        "type": "string"
+                                    },
+                                    "id": {
+                                        "description": "Unique role identifier inside the appRoles collection.",
+                                        "type": "string"
+                                    },
+                                    "isEnabled": {
+                                        "description": "When creating or updating a role definition, this must be set to true (which is the default). To delete a role, this must first be set to false. At that point, in a subsequent call, this role may be removed.",
+                                        "type": "boolean"
+                                    },
+                                    "value": {
+                                        "description": "Specifies the value of the roles claim that the application should expect in the authentication and access tokens.",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "availableToOtherTenants": {
+                            "description": "Whether the application is available to other tenants.",
+                            "type": "boolean"
+                        },
+                        "errorUrl": {
+                            "description": "A URL provided by the author of the application to report errors when using the application.",
+                            "type": "string"
+                        },
+                        "groupMembershipClaims": {
+                            "description": "Configures the groups claim issued in a user or OAuth 2.0 access token that the app expects.",
+                            "enum": [
+                                "None",
+                                "SecurityGroup",
+                                "All"
+                            ],
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "GroupMembershipClaimTypes"
+                            }
+                        },
+                        "homepage": {
+                            "description": "The home page of the application.",
+                            "type": "string"
+                        },
+                        "informationalUrls": {
+                            "description": "urls with more informations of the application.",
+                            "properties": {
+                                "marketing": {
+                                    "description": "The marketing URI",
+                                    "type": "string"
+                                },
+                                "privacy": {
+                                    "description": "The privacy policy URI",
+                                    "type": "string"
+                                },
+                                "support": {
+                                    "description": "The support URI",
+                                    "type": "string"
+                                },
+                                "termsOfService": {
+                                    "description": "The terms of service URI",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "isDeviceOnlyAuthSupported": {
+                            "description": "Specifies whether this application supports device authentication without a user. The default is false.",
+                            "type": "boolean"
+                        },
+                        "keyCredentials": {
+                            "description": "A collection of KeyCredential objects.",
+                            "items": {
+                                "additionalProperties": {
+                                    "type": "object"
+                                },
+                                "description": "Active Directory Key Credential information.",
+                                "properties": {
+                                    "customKeyIdentifier": {
+                                        "description": "Custom Key Identifier",
+                                        "type": "string"
+                                    },
+                                    "endDate": {
+                                        "description": "End date.",
+                                        "format": "date-time",
+                                        "type": "string"
+                                    },
+                                    "keyId": {
+                                        "description": "Key ID.",
+                                        "type": "string"
+                                    },
+                                    "startDate": {
+                                        "description": "Start date.",
+                                        "format": "date-time",
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "description": "Type. Acceptable values are 'AsymmetricX509Cert' and 'Symmetric'.",
+                                        "type": "string"
+                                    },
+                                    "usage": {
+                                        "description": "Usage. Acceptable values are 'Verify' and 'Sign'.",
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "description": "Key value.",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "knownClientApplications": {
+                            "description": "Client applications that are tied to this resource application. Consent to any of the known client applications will result in implicit consent to the resource application through a combined consent dialog (showing the OAuth permission scopes required by the client and the resource).",
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        "logoutUrl": {
+                            "description": "the url of the logout page",
+                            "type": "string"
+                        },
+                        "oauth2AllowImplicitFlow": {
+                            "description": "Whether to allow implicit grant flow for OAuth2",
+                            "type": "boolean"
+                        },
+                        "oauth2AllowUrlPathMatching": {
+                            "description": "Specifies whether during a token Request Azure AD will allow path matching of the redirect URI against the applications collection of replyURLs. The default is false.",
+                            "type": "boolean"
+                        },
+                        "oauth2Permissions": {
+                            "description": "The collection of OAuth 2.0 permission scopes that the web API (resource) application exposes to client applications. These permission scopes may be granted to client applications during consent.",
+                            "items": {
+                                "description": "Represents an OAuth 2.0 delegated permission scope. The specified OAuth 2.0 delegated permission scopes may be requested by client applications (through the requiredResourceAccess collection on the Application object) when calling a resource application. The oauth2Permissions property of the ServicePrincipal entity and of the Application entity is a collection of OAuth2Permission.",
+                                "properties": {
+                                    "adminConsentDescription": {
+                                        "description": "Permission help text that appears in the admin consent and app assignment experiences.",
+                                        "type": "string"
+                                    },
+                                    "adminConsentDisplayName": {
+                                        "description": "Display name for the permission that appears in the admin consent and app assignment experiences.",
+                                        "type": "string"
+                                    },
+                                    "id": {
+                                        "description": "Unique scope permission identifier inside the oauth2Permissions collection.",
+                                        "type": "string"
+                                    },
+                                    "isEnabled": {
+                                        "description": "When creating or updating a permission, this property must be set to true (which is the default). To delete a permission, this property must first be set to false. At that point, in a subsequent call, the permission may be removed. ",
+                                        "type": "boolean"
+                                    },
+                                    "type": {
+                                        "description": "Specifies whether this scope permission can be consented to by an end user, or whether it is a tenant-wide permission that must be consented to by a Company Administrator. Possible values are \"User\" or \"Admin\".",
+                                        "type": "string"
+                                    },
+                                    "userConsentDescription": {
+                                        "description": "Permission help text that appears in the end user consent experience.",
+                                        "type": "string"
+                                    },
+                                    "userConsentDisplayName": {
+                                        "description": "Display name for the permission that appears in the end user consent experience.",
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "description": "The value of the scope claim that the resource application should expect in the OAuth 2.0 access token.",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "oauth2RequirePostResponse": {
+                            "description": "Specifies whether, as part of OAuth 2.0 token requests, Azure AD will allow POST requests, as opposed to GET requests. The default is false, which specifies that only GET requests will be allowed.",
+                            "type": "boolean"
+                        },
+                        "optionalClaims": {
+                            "description": "Specifying the claims to be included in the token.",
+                            "properties": {
+                                "accessToken": {
+                                    "description": "Optional claims requested to be included in the access token.",
+                                    "items": {
+                                        "description": "Specifying the claims to be included in a token.",
+                                        "properties": {
+                                            "additionalProperties": {
+                                                "type": "object"
+                                            },
+                                            "essential": {
+                                                "description": "Is this a required claim.",
+                                                "type": "boolean"
+                                            },
+                                            "name": {
+                                                "description": "Claim name.",
+                                                "type": "string"
+                                            },
+                                            "source": {
+                                                "description": "Claim source.",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "idToken": {
+                                    "description": "Optional claims requested to be included in the id token.",
+                                    "items": {
+                                        "description": "Specifying the claims to be included in a token.",
+                                        "properties": {
+                                            "additionalProperties": {
+                                                "type": "object"
+                                            },
+                                            "essential": {
+                                                "description": "Is this a required claim.",
+                                                "type": "boolean"
+                                            },
+                                            "name": {
+                                                "description": "Claim name.",
+                                                "type": "string"
+                                            },
+                                            "source": {
+                                                "description": "Claim source.",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "samlToken": {
+                                    "description": "Optional claims requested to be included in the saml token.",
+                                    "items": {
+                                        "description": "Specifying the claims to be included in a token.",
+                                        "properties": {
+                                            "additionalProperties": {
+                                                "type": "object"
+                                            },
+                                            "essential": {
+                                                "description": "Is this a required claim.",
+                                                "type": "boolean"
+                                            },
+                                            "name": {
+                                                "description": "Claim name.",
+                                                "type": "string"
+                                            },
+                                            "source": {
+                                                "description": "Claim source.",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "orgRestrictions": {
+                            "description": "A list of tenants allowed to access application.",
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        "passwordCredentials": {
+                            "description": "A collection of PasswordCredential objects",
+                            "items": {
+                                "additionalProperties": {
+                                    "type": "object"
+                                },
+                                "description": "Active Directory Password Credential information.",
+                                "properties": {
+                                    "customKeyIdentifier": {
+                                        "description": "Custom Key Identifier",
+                                        "format": "byte",
+                                        "type": "string"
+                                    },
+                                    "endDate": {
+                                        "description": "End date.",
+                                        "format": "date-time",
+                                        "type": "string"
+                                    },
+                                    "keyId": {
+                                        "description": "Key ID.",
+                                        "type": "string"
+                                    },
+                                    "startDate": {
+                                        "description": "Start date.",
+                                        "format": "date-time",
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "description": "Key value.",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "preAuthorizedApplications": {
+                            "description": "list of pre-authorized applications.",
+                            "items": {
+                                "description": "Contains information about pre authorized client application.",
+                                "properties": {
+                                    "appId": {
+                                        "description": "Represents the application id.",
+                                        "type": "string"
+                                    },
+                                    "extensions": {
+                                        "description": "Collection of extensions from the resource application.",
+                                        "items": {
+                                            "description": "Representation of an app PreAuthorizedApplicationExtension required by a pre authorized client app.",
+                                            "properties": {
+                                                "conditions": {
+                                                    "description": "The extension's conditions.",
+                                                    "items": {
+                                                        "type": "string"
+                                                    },
+                                                    "type": "array"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "type": "array"
+                                    },
+                                    "permissions": {
+                                        "description": "Collection of required app permissions/entitlements from the resource application.",
+                                        "items": {
+                                            "description": "Contains information about the pre-authorized permissions.",
+                                            "properties": {
+                                                "accessGrants": {
+                                                    "description": "The list of permissions.",
+                                                    "items": {
+                                                        "type": "string"
+                                                    },
+                                                    "type": "array"
+                                                },
+                                                "directAccessGrant": {
+                                                    "description": "Indicates whether the permission set is DirectAccess or impersonation.",
+                                                    "type": "boolean"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "type": "array"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "publicClient": {
+                            "description": "Specifies whether this application is a public client (such as an installed application running on a mobile device). Default is false.",
+                            "type": "boolean"
+                        },
+                        "publisherDomain": {
+                            "description": "Reliable domain which can be used to identify an application.",
+                            "type": "string"
+                        },
+                        "replyUrls": {
+                            "description": "A collection of reply URLs for the application.",
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        "requiredResourceAccess": {
+                            "description": "Specifies resources that this application requires access to and the set of OAuth permission scopes and application roles that it needs under each of those resources. This pre-configuration of required resource access drives the consent experience.",
+                            "items": {
+                                "additionalProperties": {
+                                    "type": "object"
+                                },
+                                "description": "Specifies the set of OAuth 2.0 permission scopes and app roles under the specified resource that an application requires access to. The specified OAuth 2.0 permission scopes may be requested by client applications (through the requiredResourceAccess collection) when calling a resource application. The requiredResourceAccess property of the Application entity is a collection of RequiredResourceAccess.",
+                                "properties": {
+                                    "resourceAccess": {
+                                        "description": "The list of OAuth2.0 permission scopes and app roles that the application requires from the specified resource.",
+                                        "items": {
+                                            "additionalProperties": {
+                                                "type": "object"
+                                            },
+                                            "description": "Specifies an OAuth 2.0 permission scope or an app role that an application requires. The resourceAccess property of the RequiredResourceAccess type is a collection of ResourceAccess.",
+                                            "properties": {
+                                                "id": {
+                                                    "description": "The unique identifier for one of the OAuth2Permission or AppRole instances that the resource application exposes.",
+                                                    "type": "string"
+                                                },
+                                                "type": {
+                                                    "description": "Specifies whether the id property references an OAuth2Permission or an AppRole. Possible values are \"scope\" or \"role\".",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "id"
+                                            ],
+                                            "type": "object"
+                                        },
+                                        "type": "array"
+                                    },
+                                    "resourceAppId": {
+                                        "description": "The unique identifier for the resource that the application requires access to. This should be equal to the appId declared on the target resource application.",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "resourceAccess"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "samlMetadataUrl": {
+                            "description": "The URL to the SAML metadata for the application.",
+                            "type": "string"
+                        },
+                        "signInAudience": {
+                            "description": "Audience for signing in to the application (AzureADMyOrganization, AzureADAllOrganizations, AzureADAndMicrosoftAccounts).",
+                            "type": "string"
+                        },
+                        "wwwHomepage": {
+                            "description": "The primary Web page.",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                }
+            ],
+            "description": "Request parameters for creating a new application.",
+            "properties": {
+                "displayName": {
+                    "description": "The display name of the application.",
+                    "type": "string"
+                },
+                "identifierUris": {
+                    "description": "A collection of URIs for the application.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "displayName",
+                "identifierUris"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

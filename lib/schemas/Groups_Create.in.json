@@ -1,0 +1,50 @@
+{
+    "type": "object",
+    "properties": {
+        "tenantID": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "additionalProperties": {
+                "type": "object"
+            },
+            "description": "Request parameters for creating a new group.",
+            "properties": {
+                "displayName": {
+                    "description": "Group display name",
+                    "type": "string"
+                },
+                "mailEnabled": {
+                    "description": "Whether the group is mail-enabled. Must be false. This is because only pure security groups can be created using the Graph API.",
+                    "enum": [
+                        false
+                    ],
+                    "type": "boolean"
+                },
+                "mailNickname": {
+                    "description": "Mail nickname",
+                    "type": "string"
+                },
+                "securityEnabled": {
+                    "description": "Whether the group is a security group. Must be true. This is because only pure security groups can be created using the Graph API.",
+                    "enum": [
+                        true
+                    ],
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "displayName",
+                "mailEnabled",
+                "mailNickname",
+                "securityEnabled"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

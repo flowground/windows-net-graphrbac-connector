@@ -1,0 +1,72 @@
+{
+    "type": "object",
+    "properties": {
+        "tenantID": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "clientId": "clientId",
+                "consentType": "consentType",
+                "expiryTime": "expiryTime",
+                "odata.type": "odata.type",
+                "principalId": "",
+                "resourceId": "resourceId",
+                "scope": "scope",
+                "startTime": "startTime"
+            },
+            "properties": {
+                "clientId": {
+                    "description": "The id of the resource's service principal granted consent to impersonate the user when accessing the resource (represented by the resourceId property).",
+                    "type": "string"
+                },
+                "consentType": {
+                    "description": "Indicates if consent was provided by the administrator (on behalf of the organization) or by an individual.",
+                    "enum": [
+                        "AllPrincipals",
+                        "Principal"
+                    ],
+                    "type": "string",
+                    "x-ms-enum": {
+                        "modelAsString": true,
+                        "name": "ConsentType"
+                    }
+                },
+                "expiryTime": {
+                    "description": "Expiry time for TTL",
+                    "type": "string"
+                },
+                "objectId": {
+                    "description": "The id of the permission grant",
+                    "type": "string"
+                },
+                "principalId": {
+                    "description": "When consent type is Principal, this property specifies the id of the user that granted consent and applies only for that user.",
+                    "type": "string"
+                },
+                "resourceId": {
+                    "description": "Object Id of the resource you want to grant",
+                    "type": "string"
+                },
+                "scope": {
+                    "description": "Specifies the value of the scope claim that the resource application should expect in the OAuth 2.0 access token. For example, User.Read",
+                    "type": "string"
+                },
+                "startTime": {
+                    "description": "Start time for TTL",
+                    "type": "string"
+                },
+                "odata_type": {
+                    "description": "Microsoft.DirectoryServices.OAuth2PermissionGrant",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "type": "object",
+    "properties": {
+        "applicationObjectId": {
+            "required": true,
+            "type": "string"
+        },
+        "ownerObjectId": {
+            "required": true,
+            "type": "string"
+        },
+        "tenantID": {
+            "required": true,
+            "type": "string"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

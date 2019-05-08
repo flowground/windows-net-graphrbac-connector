@@ -1,0 +1,40 @@
+{
+    "type": "object",
+    "properties": {
+        "tenantID": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "additionalProperties": {
+                "type": "object"
+            },
+            "description": "Request parameters for the GetObjectsByObjectIds API.",
+            "properties": {
+                "includeDirectoryObjectReferences": {
+                    "description": "If true, also searches for object IDs in the partner tenant.",
+                    "type": "boolean"
+                },
+                "objectIds": {
+                    "description": "The requested object IDs.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "types": {
+                    "description": "The requested object types.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

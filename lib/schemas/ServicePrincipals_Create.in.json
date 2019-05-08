@@ -1,0 +1,132 @@
+{
+    "type": "object",
+    "properties": {
+        "tenantID": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "Active Directory service principal common properties shared among GET, POST and PATCH",
+                    "properties": {
+                        "accountEnabled": {
+                            "description": "whether or not the service principal account is enabled",
+                            "type": "string"
+                        },
+                        "appRoleAssignmentRequired": {
+                            "description": "Specifies whether an AppRoleAssignment to a user or group is required before Azure AD will issue a user or access token to the application.",
+                            "type": "boolean"
+                        },
+                        "keyCredentials": {
+                            "description": "The collection of key credentials associated with the service principal.",
+                            "items": {
+                                "additionalProperties": {
+                                    "type": "object"
+                                },
+                                "description": "Active Directory Key Credential information.",
+                                "properties": {
+                                    "customKeyIdentifier": {
+                                        "description": "Custom Key Identifier",
+                                        "type": "string"
+                                    },
+                                    "endDate": {
+                                        "description": "End date.",
+                                        "format": "date-time",
+                                        "type": "string"
+                                    },
+                                    "keyId": {
+                                        "description": "Key ID.",
+                                        "type": "string"
+                                    },
+                                    "startDate": {
+                                        "description": "Start date.",
+                                        "format": "date-time",
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "description": "Type. Acceptable values are 'AsymmetricX509Cert' and 'Symmetric'.",
+                                        "type": "string"
+                                    },
+                                    "usage": {
+                                        "description": "Usage. Acceptable values are 'Verify' and 'Sign'.",
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "description": "Key value.",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "passwordCredentials": {
+                            "description": "The collection of password credentials associated with the service principal.",
+                            "items": {
+                                "additionalProperties": {
+                                    "type": "object"
+                                },
+                                "description": "Active Directory Password Credential information.",
+                                "properties": {
+                                    "customKeyIdentifier": {
+                                        "description": "Custom Key Identifier",
+                                        "format": "byte",
+                                        "type": "string"
+                                    },
+                                    "endDate": {
+                                        "description": "End date.",
+                                        "format": "date-time",
+                                        "type": "string"
+                                    },
+                                    "keyId": {
+                                        "description": "Key ID.",
+                                        "type": "string"
+                                    },
+                                    "startDate": {
+                                        "description": "Start date.",
+                                        "format": "date-time",
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "description": "Key value.",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "servicePrincipalType": {
+                            "description": "the type of the service principal",
+                            "type": "string"
+                        },
+                        "tags": {
+                            "description": "Optional list of tags that you can apply to your service principals. Not nullable.",
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "type": "object"
+                }
+            ],
+            "description": "Request parameters for creating a new service principal.",
+            "properties": {
+                "appId": {
+                    "description": "The application ID.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "appId"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

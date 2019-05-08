@@ -1,0 +1,1107 @@
+{
+    "title": "GraphRbacManagementClient",
+    "description": "The Graph RBAC Management Client",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/windows.net/graphrbac/1.6/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://graph.windows.net/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Azure Active Directory OAuth2 Flow",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "Applications_List": {
+            "main": "./lib/actions/Applications_List.js",
+            "title": "Lists applications by filter parameters.",
+            "description": "Lists applications by filter parameters.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Applications_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Applications_Create": {
+            "main": "./lib/actions/Applications_Create.js",
+            "title": "Create a new application.",
+            "description": "Create a new application.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "text/json": "text/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Applications_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Applications_Delete": {
+            "main": "./lib/actions/Applications_Delete.js",
+            "title": "Delete an application.",
+            "description": "Delete an application.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Applications_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Applications_Get": {
+            "main": "./lib/actions/Applications_Get.js",
+            "title": "Get an application by object ID.",
+            "description": "Get an application by object ID.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Applications_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Applications_Patch": {
+            "main": "./lib/actions/Applications_Patch.js",
+            "title": "Update an existing application.",
+            "description": "Update an existing application.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "text/json": "text/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Applications_Patch.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Applications_AddOwner": {
+            "main": "./lib/actions/Applications_AddOwner.js",
+            "title": "Add an owner to an application.",
+            "description": "Add an owner to an application.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "text/json": "text/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Applications_AddOwner.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Applications_RemoveOwner": {
+            "main": "./lib/actions/Applications_RemoveOwner.js",
+            "title": "Remove a member from owners.",
+            "description": "Remove a member from owners.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Applications_RemoveOwner.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Applications_ListKeyCredentials": {
+            "main": "./lib/actions/Applications_ListKeyCredentials.js",
+            "title": "Get the keyCredentials associated with an application.",
+            "description": "Get the keyCredentials associated with an application.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Applications_ListKeyCredentials.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Applications_UpdateKeyCredentials": {
+            "main": "./lib/actions/Applications_UpdateKeyCredentials.js",
+            "title": "Update the keyCredentials associated with an application.",
+            "description": "Update the keyCredentials associated with an application.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "text/json": "text/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Applications_UpdateKeyCredentials.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Applications_ListOwners": {
+            "main": "./lib/actions/Applications_ListOwners.js",
+            "title": "Directory objects that are owners of the application.",
+            "description": "The owners are a set of non-admin users who are allowed to modify this object.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Applications_ListOwners.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Applications_ListPasswordCredentials": {
+            "main": "./lib/actions/Applications_ListPasswordCredentials.js",
+            "title": "Get the passwordCredentials associated with an application.",
+            "description": "Get the passwordCredentials associated with an application.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Applications_ListPasswordCredentials.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Applications_UpdatePasswordCredentials": {
+            "main": "./lib/actions/Applications_UpdatePasswordCredentials.js",
+            "title": "Update passwordCredentials associated with an application.",
+            "description": "Update passwordCredentials associated with an application.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "text/json": "text/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Applications_UpdatePasswordCredentials.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DeletedApplications_List": {
+            "main": "./lib/actions/DeletedApplications_List.js",
+            "title": "Gets a list of deleted applications in the directory.",
+            "description": "Gets a list of deleted applications in the directory.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DeletedApplications_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DeletedApplications_HardDelete": {
+            "main": "./lib/actions/DeletedApplications_HardDelete.js",
+            "title": "Hard-delete an application.",
+            "description": "Hard-delete an application.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DeletedApplications_HardDelete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DeletedApplications_Restore": {
+            "main": "./lib/actions/DeletedApplications_Restore.js",
+            "title": "Restores the deleted application in the directory.",
+            "description": "Restores the deleted application in the directory.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DeletedApplications_Restore.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Domains_List": {
+            "main": "./lib/actions/Domains_List.js",
+            "title": "Gets a list of domains for the current tenant.",
+            "description": "Gets a list of domains for the current tenant.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Domains_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Domains_Get": {
+            "main": "./lib/actions/Domains_Get.js",
+            "title": "Gets a specific domain in the current tenant.",
+            "description": "Gets a specific domain in the current tenant.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Domains_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Objects_GetObjectsByObjectIds": {
+            "main": "./lib/actions/Objects_GetObjectsByObjectIds.js",
+            "title": "Gets the directory objects specified in a list of object IDs. You can also specify which resource collections (users, groups, etc.) should be searched by specifying the optional types parameter.",
+            "description": "Gets the directory objects specified in a list of object IDs. You can also specify which resource collections (users, groups, etc.) should be searched by specifying the optional types parameter.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "text/json": "text/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Objects_GetObjectsByObjectIds.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Groups_List": {
+            "main": "./lib/actions/Groups_List.js",
+            "title": "Gets list of groups for the current tenant.",
+            "description": "Gets list of groups for the current tenant.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Groups_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Groups_Create": {
+            "main": "./lib/actions/Groups_Create.js",
+            "title": "Create a group in the directory.",
+            "description": "Create a group in the directory.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "text/json": "text/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Groups_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Groups_AddMember": {
+            "main": "./lib/actions/Groups_AddMember.js",
+            "title": "Add a member to a group.",
+            "description": "Add a member to a group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "text/json": "text/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Groups_AddMember.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Groups_RemoveMember": {
+            "main": "./lib/actions/Groups_RemoveMember.js",
+            "title": "Remove a member from a group.",
+            "description": "Remove a member from a group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Groups_RemoveMember.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Groups_Delete": {
+            "main": "./lib/actions/Groups_Delete.js",
+            "title": "Delete a group from the directory.",
+            "description": "Delete a group from the directory.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Groups_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Groups_Get": {
+            "main": "./lib/actions/Groups_Get.js",
+            "title": "Gets group information from the directory.",
+            "description": "Gets group information from the directory.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Groups_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Groups_AddOwner": {
+            "main": "./lib/actions/Groups_AddOwner.js",
+            "title": "Add an owner to a group.",
+            "description": "Add an owner to a group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "text/json": "text/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Groups_AddOwner.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Groups_RemoveOwner": {
+            "main": "./lib/actions/Groups_RemoveOwner.js",
+            "title": "Remove a member from owners.",
+            "description": "Remove a member from owners.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Groups_RemoveOwner.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Groups_GetMemberGroups": {
+            "main": "./lib/actions/Groups_GetMemberGroups.js",
+            "title": "Gets a collection of object IDs of groups of which the specified group is a member.",
+            "description": "Gets a collection of object IDs of groups of which the specified group is a member.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "text/json": "text/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Groups_GetMemberGroups.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Groups_GetGroupMembers": {
+            "main": "./lib/actions/Groups_GetGroupMembers.js",
+            "title": "Gets the members of a group.",
+            "description": "Gets the members of a group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Groups_GetGroupMembers.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Groups_ListOwners": {
+            "main": "./lib/actions/Groups_ListOwners.js",
+            "title": "Directory objects that are owners of the group.",
+            "description": "The owners are a set of non-admin users who are allowed to modify this object.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Groups_ListOwners.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Groups_IsMemberOf": {
+            "main": "./lib/actions/Groups_IsMemberOf.js",
+            "title": "Checks whether the specified user, group, contact, or service principal is a direct or transitive member of the specified group.",
+            "description": "Checks whether the specified user, group, contact, or service principal is a direct or transitive member of the specified group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "text/json": "text/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Groups_IsMemberOf.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "SignedInUser_Get": {
+            "main": "./lib/actions/SignedInUser_Get.js",
+            "title": "Gets the details for the currently logged-in user.",
+            "description": "Gets the details for the currently logged-in user.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/SignedInUser_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "SignedInUser_ListOwnedObjects": {
+            "main": "./lib/actions/SignedInUser_ListOwnedObjects.js",
+            "title": "Get the list of directory objects that are owned by the user.",
+            "description": "Get the list of directory objects that are owned by the user.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/SignedInUser_ListOwnedObjects.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "OAuth2PermissionGrant_List": {
+            "main": "./lib/actions/OAuth2PermissionGrant_List.js",
+            "title": "Queries OAuth2 permissions grants for the relevant SP ObjectId of an app.",
+            "description": "Queries OAuth2 permissions grants for the relevant SP ObjectId of an app.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/OAuth2PermissionGrant_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "OAuth2PermissionGrant_Create": {
+            "main": "./lib/actions/OAuth2PermissionGrant_Create.js",
+            "title": "Grants OAuth2 permissions for the relevant resource Ids of an app.",
+            "description": "Grants OAuth2 permissions for the relevant resource Ids of an app.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "text/json": "text/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/OAuth2PermissionGrant_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "OAuth2PermissionGrant_Delete": {
+            "main": "./lib/actions/OAuth2PermissionGrant_Delete.js",
+            "title": "Delete a OAuth2 permission grant for the relevant resource Ids of an app.",
+            "description": "Delete a OAuth2 permission grant for the relevant resource Ids of an app.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/OAuth2PermissionGrant_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ServicePrincipals_List": {
+            "main": "./lib/actions/ServicePrincipals_List.js",
+            "title": "Gets a list of service principals from the current tenant.",
+            "description": "Gets a list of service principals from the current tenant.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ServicePrincipals_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ServicePrincipals_Create": {
+            "main": "./lib/actions/ServicePrincipals_Create.js",
+            "title": "Creates a service principal in the directory.",
+            "description": "Creates a service principal in the directory.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "text/json": "text/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ServicePrincipals_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ServicePrincipals_Delete": {
+            "main": "./lib/actions/ServicePrincipals_Delete.js",
+            "title": "Deletes a service principal from the directory.",
+            "description": "Deletes a service principal from the directory.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ServicePrincipals_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ServicePrincipals_Get": {
+            "main": "./lib/actions/ServicePrincipals_Get.js",
+            "title": "Gets service principal information from the directory. Query by objectId or pass a filter to query by appId",
+            "description": "Gets service principal information from the directory. Query by objectId or pass a filter to query by appId",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ServicePrincipals_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ServicePrincipals_Update": {
+            "main": "./lib/actions/ServicePrincipals_Update.js",
+            "title": "Updates a service principal in the directory.",
+            "description": "Updates a service principal in the directory.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "text/json": "text/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ServicePrincipals_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ServicePrincipals_ListKeyCredentials": {
+            "main": "./lib/actions/ServicePrincipals_ListKeyCredentials.js",
+            "title": "Get the keyCredentials associated with the specified service principal.",
+            "description": "Get the keyCredentials associated with the specified service principal.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ServicePrincipals_ListKeyCredentials.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ServicePrincipals_UpdateKeyCredentials": {
+            "main": "./lib/actions/ServicePrincipals_UpdateKeyCredentials.js",
+            "title": "Update the keyCredentials associated with a service principal.",
+            "description": "Update the keyCredentials associated with a service principal.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "text/json": "text/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ServicePrincipals_UpdateKeyCredentials.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ServicePrincipals_ListOwners": {
+            "main": "./lib/actions/ServicePrincipals_ListOwners.js",
+            "title": "Directory objects that are owners of this service principal.",
+            "description": "The owners are a set of non-admin users who are allowed to modify this object.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ServicePrincipals_ListOwners.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ServicePrincipals_ListPasswordCredentials": {
+            "main": "./lib/actions/ServicePrincipals_ListPasswordCredentials.js",
+            "title": "Gets the passwordCredentials associated with a service principal.",
+            "description": "Gets the passwordCredentials associated with a service principal.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ServicePrincipals_ListPasswordCredentials.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ServicePrincipals_UpdatePasswordCredentials": {
+            "main": "./lib/actions/ServicePrincipals_UpdatePasswordCredentials.js",
+            "title": "Updates the passwordCredentials associated with a service principal.",
+            "description": "Updates the passwordCredentials associated with a service principal.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "text/json": "text/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ServicePrincipals_UpdatePasswordCredentials.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Users_List": {
+            "main": "./lib/actions/Users_List.js",
+            "title": "Gets list of users for the current tenant.",
+            "description": "Gets list of users for the current tenant.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Users_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Users_Create": {
+            "main": "./lib/actions/Users_Create.js",
+            "title": "Create a new user.",
+            "description": "Create a new user.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "text/json": "text/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Users_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Users_GetMemberGroups": {
+            "main": "./lib/actions/Users_GetMemberGroups.js",
+            "title": "Gets a collection that contains the object IDs of the groups of which the user is a member.",
+            "description": "Gets a collection that contains the object IDs of the groups of which the user is a member.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "text/json": "text/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Users_GetMemberGroups.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Users_Delete": {
+            "main": "./lib/actions/Users_Delete.js",
+            "title": "Delete a user.",
+            "description": "Delete a user.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Users_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Users_Get": {
+            "main": "./lib/actions/Users_Get.js",
+            "title": "Gets user information from the directory.",
+            "description": "Gets user information from the directory.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Users_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Users_Update": {
+            "main": "./lib/actions/Users_Update.js",
+            "title": "Updates a user.",
+            "description": "Updates a user.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "text/json": "text/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Users_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
